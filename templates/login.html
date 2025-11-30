@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso de Administrador</title>
+    <style>
+        /* CSS DE DISEÑO COMPLETO PARA LOGIN */
+        
+        /* 1. BASE & CENTRADO */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #E0E0E0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        
+        /* 2. CARD DE LOGIN (DISEÑO MODERNO) */
+        .login-card { 
+            background-color: #2A2A2A; padding: 50px; border-radius: 15px; box-shadow: 0 10px 40px rgba(255, 0, 76, 0.15); 
+            width: 100%; max-width: 450px; text-align: center; border: 1px solid #333;
+        }
+        .logo { font-size: 3em; color: #FF004C; margin-bottom: 5px; } 
+        .login-card h2 { color: #FF004C; margin-bottom: 5px; font-size: 2em; text-transform: uppercase; letter-spacing: 1px; }
+        .login-card p.subtitle { color: #999; font-size: 1em; margin-bottom: 40px; }
+        
+        /* 3. FORMULARIO */
+        label { display: block; text-align: left; margin-bottom: 8px; font-weight: bold; color: #E0E0E0; font-size: 1em; }
+        input { 
+            width: 100%; padding: 14px; margin-bottom: 25px; background: #333; border: 1px solid #444; 
+            color: white; border-radius: 8px; box-sizing: border-box; font-size: 1em; transition: border-color 0.3s;
+        }
+        input:focus { border-color: #FF004C; box-shadow: 0 0 8px rgba(255, 0, 76, 0.4); outline: none; }
+        
+        button { 
+            background: #FF004C; width: 100%; padding: 16px; font-size: 1.3em; color: white; border: none; 
+            border-radius: 8px; cursor: pointer; transition: background-color 0.3s, transform 0.1s; font-weight: bold; 
+        }
+        button:hover { background: #CC003A; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(255, 0, 76, 0.4); }
+        
+        /* 4. ALERTAS Y NOTAS */
+        .alert { padding: 15px; margin-bottom: 25px; border-radius: 8px; font-size: 1em; text-align: left; }
+        .alert-danger { background-color: #440000; color: #FF6666; }
+        .alert-success { background-color: #004400; color: #66FF66; }
+        .footer-note { margin-top: 35px; font-size: 0.85em; color: #666; }
+
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">TX</div> 
+        <h2>ACCESO DE ADMINISTRADOR</h2>
+        <p class="subtitle">Torres Xiters Control Panel</p>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category if category != 'danger' else 'danger' }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" required placeholder="Ingresa tu usuario">
+            
+            <label for="login_key">Clave:</label>
+            <input type="password" id="login_key" name="login_key" required placeholder="Ingresa tu clave">
+            
+            <button type="submit">Entrar al Panel</button>
+        </form>
+        
+        <p class="footer-note">Usuario por defecto: "admin", Clave por defecto: "adminpass"</p>
+    </div>
+</body>
+</html>

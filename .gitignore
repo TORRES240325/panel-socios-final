@@ -1,0 +1,7 @@
+# Archivos de base de datos y variables secretas que NO deben ir a GitHub
+socios_bot.db
+.env
+
+# Carpetas y archivos de caché/temporales de Python
+__pycache__/
+*.pyc
